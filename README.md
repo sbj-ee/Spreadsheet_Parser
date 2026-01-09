@@ -9,16 +9,19 @@ Python utilities for parsing Excel spreadsheets and loading them into different 
 
 ## Requirements
 
-- Python 3.x
+- Python 3.8+
 - polars
 - pandas
 - numpy
 - sqlalchemy
+- openpyxl
 
 ## Installation
 
 ```bash
-pip install polars pandas numpy sqlalchemy openpyxl
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Usage
