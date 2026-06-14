@@ -1,2 +1,13 @@
-equinix.db
 .env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Example output artifacts
+*.db
+*.json
+csv_output/
+parquet_output/

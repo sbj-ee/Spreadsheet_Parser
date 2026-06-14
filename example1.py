@@ -1,19 +1,25 @@
-import polars as pl
-import pandas as pd
-import numpy as np
-import warnings, os, logging
-logging.getLogger("numpy").setLevel(logging.ERROR)
-warnings.filterwarnings("ignore")
-os.environ["NUMPY_WARN_IF_NO_FALLBACK"] = "0"
-warnings.filterwarnings("ignore", category=UserWarning)
-warnings.filterwarnings("ignore", category=UserWarning, module="numpy")
-warnings.filterwarnings("ignore", message="Signature.*longdouble.*", module="numpy")
-warnings.filterwarnings("ignore", category=UserWarning, module=np.__name__)
+"""Example 1: Load every sheet of an Excel workbook into Polars DataFrames.
+
+Usage:
+    python example1.py [path/to/file.xlsx]
+"""
+
+import sys
 from pprint import pprint
 
-pl.Config.set_tbl_rows(-1)
-excel_file = "/home/usrsbj/EQUINIX.xlsx"
-xls = pd.ExcelFile(excel_file)
-dfs = {sheet: pl.from_pandas(pd.read_excel(xls, sheet_name=sheet)) for sheet in xls.sheet_names}
+import polars as pl
 
-pprint(dfs)
+from spreadsheet_utils import load_sheets, suppress_numpy_warnings
+
+suppress_numpy_warnings()
+pl.Config.set_tbl_rows(-1)
+
+
+def main(excel_file: str) -> None:
+    dfs = load_sheets(excel_file)
+    pprint(dfs)
+
+
+if __name__ == "__main__":
+    excel_file = sys.argv[1] if len(sys.argv) > 1 else "example.xlsx"
+    main(excel_file)
