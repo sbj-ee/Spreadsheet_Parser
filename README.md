@@ -43,6 +43,16 @@ Every example reads its workbook path from the command line (falling back to
 | `example5.py` | Concatenate all sheets into one DataFrame (tagged by source sheet) | `python example5.py file.xlsx` |
 | `example6.py` | Export the whole workbook to a single JSON file | `python example6.py file.xlsx output.json` |
 
+## Testing
+
+Install the dev dependencies and run the suite, which exercises the shared
+helpers and every example against a generated sample workbook:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## Shared helpers
 
 Common logic lives in `spreadsheet_utils.py` so the examples stay small:
