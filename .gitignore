@@ -12,3 +12,6 @@ venv/
 *.json
 csv_output/
 parquet_output/
+
+# Local Claude Code guidance
+CLAUDE.md
